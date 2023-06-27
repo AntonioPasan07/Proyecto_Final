@@ -24,18 +24,35 @@ Saldrán todos los usuarios que han sido invitados con un navbar para redirigir 
 
  ![image](./registro%20.jpg)
 
- ## backend
- ### tablas
-  que necesitaremos son users, eventos, invitados y invitaciones  
+ # backend
+ ## tablas
+  que necesitaremos son users, eventos y invitaciones  
 
- para la ruta de registes  y pedir los datos al usuario como el nombre , email y password necesitaremos tabla users  route post(http://localhost:4000/auth/signup)
+ ## Tabla de Usuarios:
 
- ```
- {
-    "name": "Antonio",
-    "email": "Antonio@hotmail.com",
-    "password": "1234"
- }
+ID uuid (clave primaria),
+username (sera text not null),
+email (sera text not null unique),
+password (sera text not null),
+fecha (para saber cuando se registro)
 
- ```
- Tengo que hacer las tablas y routes esto es solo para que lo veas y me digas que te parece la idea.
+## Tabla de Eventos:
+
+ID uuid (clave primaria),
+evento (text not null),
+Fecha (date  para almacenar fechas),
+Hora (time para almacenar la hora),
+Teléfono (text not null) ,
+Dirección (text not null),
+Descripción_evento(text not null),
+Contraseña_evento (donde se almacenará la contraseña generada automáticamente),
+ID_usuario (clave externa que hace referencia al usuario anfitrión en la tabla de Usuarios)
+
+## Tabla de Invitaciones:
+
+ID uuid (clave primaria),
+confirmación (por ejemplo, aceptado, pendiente, rechazado),
+pago_Bizum (opcional, si se requiere registrar para el pago),
+Estado_Bizum(opcional para registrar el estado del pago),
+invitacion_evento (clave externa que hace referencia al evento en la tabla de Eventos),
+usuario_invitado (clave externa que hace referencia al usuario invitado en la tabla de Usuarios)
