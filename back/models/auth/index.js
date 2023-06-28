@@ -39,6 +39,7 @@ const selectUsers = (db)=> async (email,compareFn)=>{
         ok:true,
         content:{
          email: user.email,
+         username: user.username,
         }
       }
     }catch(error){
