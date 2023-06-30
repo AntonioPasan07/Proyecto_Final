@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS Usuarios (
 CREATE TABLE IF NOT EXISTS Eventos (
     ID uuid PRIMARY KEY DEFAULT uuid_generate_v4(),
     evento TEXT NOT NULL,
-    fecha_evento DATE DEFAULT NOW(),
+    fecha_evento DATE,
     hora TIME NOT NULL,
     Telefono TEXT NOT NULL,
     Direccion TEXT NOT NULL,
