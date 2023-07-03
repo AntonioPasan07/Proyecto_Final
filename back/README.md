@@ -59,3 +59,36 @@ pago_Bizum (opcional, si se requiere registrar para el pago),
 Estado_Bizum(opcional para registrar el estado del pago),
 invitacion_evento (clave externa que hace referencia al evento en la tabla de Eventos),
 usuario_invitado (clave externa que hace referencia al usuario invitado en la tabla de Usuarios)
+
+
+## rutas 
+Crea una ruta POST en localhost:4000/evento donde el usuario pueda enviar los datos del evento en el siguiente formato:
+
+```
+{
+    "evento": "Barcelona",
+    "fechaEvento": "2003-03-22",
+    "hora": "12:31",
+    "telefono": "1234567",
+    "direccion": "Andorra",
+    "descripcion": "Zaragoza"
+}
+```
+Estos datos serán guardados en la base de datos asignándoles un token único. A continuación se muestra un ejemplo de cómo se guardará el evento en la base de datos:
+
+```
+{
+    "evento": "Barcelona",
+    "fecha_evento": "2003-03-22",
+    "hora": "12:31:00",
+    "telefono": "1234567",
+    "direccion": "Andorra",
+    "descripcion": "Zaragoza",
+    "secreto_password": "wne98f6d"
+}
+```
+El campo secreto_password contiene el token generado para identificar el evento.
+
+Para obtener el evento de un usuario que nos invitó, se debe hacer una solicitud GET a la ruta localhost:4000/evento/:id, donde :id corresponde al token asignado al evento. Por ejemplo, si el token es "wne98f6d", la solicitud sería localhost:4000/evento/wne98f6d.
+
+Esta solicitud devolverá el evento asociado al token proporcionado, permitiendo acceder a los detalles del evento como el nombre, la fecha, la hora, el teléfono, la dirección y la descripción.
