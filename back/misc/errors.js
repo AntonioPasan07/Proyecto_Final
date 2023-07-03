@@ -11,6 +11,10 @@ module.exports={
         statusCode: 401,
         error: new Error ('unauthorized'),
     },
+    cors: {
+        statusCode: 401,
+        error: new Error('unauthorized by CORS error'),
+    },
 
     404:{
         statusCode: 404,

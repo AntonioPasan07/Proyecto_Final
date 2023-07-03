@@ -1,0 +1,30 @@
+const {insertEvento, getEventoCreate} = require('./queries')
+const {generateToken}= require('../../utils/token')
+const creatEvento = (db)=> async (evento, fechaEvento,hora,telefono, direccion, descripcion, email)=>{
+   
+    
+    try{
+        
+        const codigoSecreto = generateToken(8)
+
+     await db.query(insertEvento(evento, fechaEvento,hora,telefono, direccion, descripcion,codigoSecreto, email))
+     
+    const response = await db.query(getEventoCreate(email))
+       
+    
+      return {
+        ok:true,
+        response: response.rows,
+      }
+      
+    }catch(error){
+        return{
+            ok:false,
+            message: error.message,
+        }
+    }
+}
+
+module.exports = {
+    creatEvento,
+}
