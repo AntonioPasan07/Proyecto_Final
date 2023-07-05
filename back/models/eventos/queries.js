@@ -13,9 +13,18 @@ SELECT evento , fecha_evento, hora, telefono, direccion, descripcion,secreto_pas
  WHERE id_usuario = (SELECT id FROM usuarios WHERE email LIKE ${email})
 `
 
+const getEventos = (id) => sql.unsafe`
+SELECT evento, fecha_evento, hora, telefono, direccion, descripcion
+FROM Eventos
+WHERE secreto_password = ${id}
+`
+
+
 module.exports = {
     insertEvento,
     getEventoCreate,
+    getEventos,
+    
 }
 
 /*CREATE TABLE IF NOT EXISTS Usuarios (
