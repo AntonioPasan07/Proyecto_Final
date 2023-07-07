@@ -11,8 +11,8 @@ module.exports = (db) => async(req, res, next)=>{
     
     if(!result.ok) return next(error[result.error_code || 500])
 
-    
-    serialize(res, result.content)//A qui metemos el contenido dentro de res esta la funcion cookie
+    console.log(result)
+    serialize(res, result.content, {value: 20, type:"m"})//A qui metemos el contenido dentro de res esta la funcion cookie
 
     res.status(200).json({
         success:true,
