@@ -1,10 +1,12 @@
 
 
 const router = require('express').Router()
-const invitadosControllers = require('../controllers/invitaciones');
+const controllers = require('../controllers/invitaciones');
+const {authorizer}= require('../middlewares')
 
-module.exports = () => {
-    router.post('/new', invitadosControllers.postInvitados())
+module.exports = (db) => {
+    router.post('/new', controllers.postInvitados(db))
+    router.put('/status',authorizer, controllers.updateGuestStatus(db))
 
     return router
 
