@@ -3,9 +3,9 @@ const {selectUsers} = require('../../models/auth')
 const {hash, serialize} = require('simple-stateless-auth-library')
 module.exports = (db) => async(req, res, next)=>{
    
-    const {username,email, password}= req.body
+    const {email, password}= req.body
 
-    if(!username|| !email || !password) return next(error[400])
+    if( !email || !password) return next(error[400])
 
     const result = await selectUsers(await db)(email, hash.compare(password))
     
