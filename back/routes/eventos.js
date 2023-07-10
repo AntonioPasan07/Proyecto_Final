@@ -4,7 +4,7 @@ const eventoControllers = require('../controllers/eventos')
 const {authorizer} = require('../middlewares')
 
 module.exports = (db) => {
-    router.post('/',authorizer,eventoControllers.postEvento(db))
+    router.post('/',authorizer(),eventoControllers.postEvento(db))
     router.get('/:id', eventoControllers.getEventos(db))
     return router
 }
