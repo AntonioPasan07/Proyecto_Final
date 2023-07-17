@@ -19,17 +19,17 @@ const Register = () => {
     
 
     <form onSubmit={handleSubmit(registerAuth)}>
-        <label htmlFor="email" email></label><br />
+        <label htmlFor="email">Email:</label><br />
         <input id="email" placeholder="user@user.com"{...register("email", { required: true })} />
         <p>{formState.errors && errors[formState.errors?.email?.type]}</p>
 
 
-        <label htmlFor="username" username></label><br />
+        <label htmlFor="username" >Username</label><br />
         <input id="username" placeholder="username"{...register("username", { required: true })} />
         <p>{formState.errors && errors[formState.errors?.username?.type]}</p>
 
 
-        <label htmlFor="password" password></label><br />
+        <label htmlFor="password" >Password:</label><br />
         <input id="password" type="password" placeholder="******"{...register("password", { required: true, minLength: 4 })} />
         <p>{formState.errors && errors[formState.errors?.password?.type]}</p>
 
