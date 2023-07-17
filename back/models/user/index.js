@@ -7,7 +7,7 @@ const mostrarEvento = (db)=> async(user)=> {
     
     try{ 
          const response = await db.query(usersEvent(user))
-      console.log(response)
+      
         return {
             ok: true,
             username: user.username,
