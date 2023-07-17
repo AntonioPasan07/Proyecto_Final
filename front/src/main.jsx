@@ -1,6 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import {Route,Redirect,Switch} from 'wouter'
+import Styled from './styles'
+import "./main.css";
+import { Route, Redirect, Switch } from 'wouter'
 //import App from './App.jsx'
 import Provider from './context/Provider'
 import Inicio from './pages/Inicio'
@@ -11,20 +13,23 @@ import CreateEvent from './pages/createEvent'
 import UnirseEvento from './pages/unirseEvento'
 import DetallesEvento from './pages/detallesEvento'
 import ListaInvitados from './pages/listaInvitados'
-const Container = ()=> {
+const Container = () => {
   return (
     <Provider>
-    <h1>Hola Mundo</h1>
-    <Switch>
-    <Route path='/' component = {Inicio}/>
-    <Route path='/login'component = {Login}/>
-    <Route path='/register'component = {Register}/>
-    <Route path='/dashboard'component = {Dashboard}/>
-    <Route path='/createEvent'component = {CreateEvent}/>
-    <Route path='/unirseEvento'component = {UnirseEvento}/>
-    <Route path='/detalles'component = {DetallesEvento}/>
-    <Route path='/lista'component = {ListaInvitados}/>
-    </Switch>
+      <Styled.Wrapper>
+        <h1>Hola Mundo</h1>
+        <Switch>
+          <Route path='/' component={Inicio} />
+          <Route path='/login' component={Login} />
+          <Route path='/register' component={Register} />
+          <Route path='/dashboard' component={Dashboard} />
+          <Route path='/createEvent' component={CreateEvent} />
+          <Route path='/unirseEvento' component={UnirseEvento} />
+          <Route path='/detalles' component={DetallesEvento} />
+          <Route path='/lista' component={ListaInvitados} />
+          <Redirect to='/'/>
+        </Switch>
+      </Styled.Wrapper>
     </Provider>
   )
 }
