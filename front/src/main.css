@@ -1,0 +1,10 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Gruppo&family=Mulish:wght@300&family=Space+Mono&family=Yeseva+One&display=swap');
+
+body {
+    font-family: 'Yeseva One', cursive;
+    background-color: beige;
+  /*  background-image: linear-gradient(rgba(0, 0, 255, 0.5), rgba(255, 255, 0, 0.5)),url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRq8agBEsgcQ2keZIqyA9lAIVLvLxO6zk0Fog&usqp=CAU");
+    background-repeat: no-repeat;
+    background-size: cover;*/
+}
