@@ -4,7 +4,7 @@ import { user } from "../services";
 
 export const useUserEvent = () => {
     const { data, isLoading } = useQuery({
-      queryKey: ["user"],
+      queryKey: ["user-event"],
       queryFn: user.useEvent,
      
     });
