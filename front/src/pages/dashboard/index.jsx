@@ -1,21 +1,26 @@
 import { useLogin } from "../../hooks/useLogin"
 import { useUserEvent } from "../../hooks/useUserEvent"
-
+import {Link}from 'wouter'
+import {useAuth}from '../../hooks/useAuth'
 //import  { useState, useEffect } from "react"
 //import {useForm} from 'react-hook-form'
 const Dashboard = () => {
   const { data: user, isLoading } = useUserEvent()
+  const { logout } = useAuth();//preguntar por que no me esta funcionamdo 
   console.log('data que trae>',user)
   useLogin();
   
-  if (isLoading) {
+  if (isLoading || !user.success) {
     return <p>Loading...</p>;
   }
+  const handleLogout = () => {
+    logout()
+  }
 
-  return (
-    <div>
-      <h2>{user.data.username}</h2>
-      {user.data.length > 0 ? (
+  return (<>
+    <h2>{user.data.username}</h2>
+    <section>
+      {user.data?.data?.length > 0 ? (
         <ul>
           {user.data.data.map((event) => (
             <li key={event.eventId}>
@@ -36,7 +41,16 @@ const Dashboard = () => {
       ) : (
         <p>No events found.</p>
       )}
-    </div>
+    </section>
+
+    <Link href="/unirseEvento">
+      <button>Unirse a Evento</button>
+    </Link>
+    <Link href="/createEvent">
+      <button>Crear Evento</button>
+    </Link>
+    <button onClick={handleLogout}>Salir</button>
+    </>
   )
 }
 export default Dashboard
