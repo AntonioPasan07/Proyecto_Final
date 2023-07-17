@@ -1,9 +1,9 @@
-const {insertEvento, getEventoCreate, getEventos, getInvitados} = require('./queries')
+const {insertEvento, getEventoCreate, getEventos} = require('./queries')
 const {generateToken}= require('../../utils/token')
 
 
 const creatEvento = (db)=> async (evento, fechaEvento,hora,telefono, direccion, descripcion, email)=>{
-   
+   console.log(evento, fechaEvento,hora,telefono, direccion, descripcion, email)
     
     try{
         
