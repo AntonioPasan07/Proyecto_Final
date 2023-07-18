@@ -2,15 +2,32 @@ import {useInvitacion}from '../../hooks/useInvitados'
 import {useForm}from 'react-hook-form'
 import {login} from '../../misc/templates'
 import BottonLink from '../../components/Link'
+import {useEventInvitado }from '../../hooks/useGetEvent'
 const DetallesEvento = () => {
-  
+  const {data, isLoading} = useEventInvitado()
+  console.log('me trae el secreto>>>',data)
   const {invitacion: doInvitados} = useInvitacion()
   const { register, formState, handleSubmit } = useForm();
 
 
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
+
+
+  const evento = data?.data?.evento
   const { errors } = login;
     return (<>
   <h1>Detalles del evento</h1>
+  <section>
+        <p>Evento al que estas invitado: {evento?.evento}</p>
+        <p>Fecha del evento: {evento?.fecha_evento}</p>
+        <p>Hora del evento: {evento?.hora}</p>
+        <p>Teléfono: {evento?.telefono}</p>
+        <p>Dirección: {evento?.direccion}</p>
+      </section>
+  
+   
   <section>
   <form onSubmit={handleSubmit(doInvitados)}>
 

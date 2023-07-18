@@ -10,3 +10,15 @@ export const useEventoCreate = (client)=> async (params) =>{
      }
 
 }
+
+export const getEvent = (client)=> async () =>{
+    try{
+      
+        const {data} = await client.get(`/evento/qvl3swe6`)
+        console.info('dime que funciona >>>>',data)
+        return  data
+     }catch(error){
+        return {success: false}
+     }
+
+}
