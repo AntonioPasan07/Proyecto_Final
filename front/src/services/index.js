@@ -1,6 +1,6 @@
 import {register, login, logout} from './auth'
 import {Info, useEvent} from './user'
-import {useEventoCreate} from './evento'
+import {useEventoCreate, getEvent} from './evento'
 import {useInvitados} from './invitados'
 import axios from 'axios'
 
@@ -22,6 +22,7 @@ const auth = {
 }
 
 const eventos = {
+    getEvent: getEvent(client),
     useEventoCreate: useEventoCreate(client),
 }
 const invitados = {
