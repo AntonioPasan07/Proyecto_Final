@@ -1,41 +1,42 @@
 import { useAuth } from "../../hooks/useAuth";
 import { useLogin } from "../../hooks/useLogin";
 import { useForm } from 'react-hook-form'
-import {login} from '../../misc/templates'
+import { login } from '../../misc/templates'
+import Title from '../../components/Title';
+import { FormContainer, Label, Input, ErrorMessage, SubmitButton } from './styles';
+
 const Register = () => {
   const isLoading = useLogin()
   const { register: registerAuth } = useAuth();
-  const { register,formState, handleSubmit } = useForm()
-  
- /* const handleFormSubmit = (data) => {
-    registerAuth(data);
-  };*/
-  
+  const { register, formState, handleSubmit } = useForm()
+
+
+
   const { errors } = login;
   return (
-    <section>
-    <h1>Register Page</h1>
-    {isLoading && <p>Loading...</p>}
-    
-
-    <form onSubmit={handleSubmit(registerAuth)}>
-        <label htmlFor="email">Email:</label><br />
-        <input id="email" placeholder="user@user.com"{...register("email", { required: true })} />
-        <p>{formState.errors && errors[formState.errors?.email?.type]}</p>
+    <FormContainer>
+      <Title texto='Register' />
+      {isLoading && <p>Loading...</p>}
 
 
-        <label htmlFor="username" >Username</label><br />
-        <input id="username" placeholder="username"{...register("username", { required: true })} />
-        <p>{formState.errors && errors[formState.errors?.username?.type]}</p>
+      <form onSubmit={handleSubmit(registerAuth)}>
+        <Label htmlFor="email">Email:</Label><br />
+        <Input id="email" placeholder="user@user.com"{...register("email", { required: true })} />
+        <ErrorMessage>{formState.errors && errors[formState.errors?.email?.type]}</ErrorMessage>
 
 
-        <label htmlFor="password" >Password:</label><br />
-        <input id="password" type="password" placeholder="******"{...register("password", { required: true, minLength: 4 })} />
-        <p>{formState.errors && errors[formState.errors?.password?.type]}</p>
+        <Label htmlFor="username" >Username</Label><br />
+        <Input id="username" placeholder="username"{...register("username", { required: true })} />
+        <ErrorMessage>{formState.errors && errors[formState.errors?.username?.type]}</ErrorMessage>
 
-        <input type="submit" />
-    </form>
-</section>
+
+        <Label htmlFor="password" >Password:</Label><br />
+        <Input id="password" type="password" placeholder="******"{...register("password", { required: true, minLength: 4 })} />
+        <ErrorMessage>{formState.errors && errors[formState.errors?.password?.type]}</ErrorMessage>
+
+        <SubmitButton type="submit" />
+      </form>
+    </FormContainer>
   )
 }
 export default Register
