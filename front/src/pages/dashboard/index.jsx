@@ -1,15 +1,15 @@
 import { useLogin } from "../../hooks/useLogin"
 import { useUserEvent } from "../../hooks/useUserEvent"
-import {Link}from 'wouter'
-import {useAuth}from '../../hooks/useAuth'
-//import  { useState, useEffect } from "react"
-//import {useForm} from 'react-hook-form'
+import { Link } from 'wouter'
+import { useAuth } from '../../hooks/useAuth'
+import { DashboardWrapper, EventList, EventItem, EventTitle, DashboardButton, DashboardTitle } from './styles';
+
 const Dashboard = () => {
   const { data: user, isLoading } = useUserEvent()
   const { logout } = useAuth();//preguntar por que no me esta funcionamdo 
-  console.log('data que trae>',user)
+  console.log('data que trae>', user)
   useLogin();
-  
+
   if (isLoading || !user.success) {
     return <p>Loading...</p>;
   }
@@ -18,39 +18,33 @@ const Dashboard = () => {
   }
 
   return (<>
-    <h2>{user.data.username}</h2>
-    <section>
-      {user.data?.data?.length > 0 ? (
-        <ul>
-          {user.data.data.map((event) => (
-            <li key={event.eventId}>
-              <strong>Evento:</strong> {event.evento}
+    <DashboardWrapper>
+      <DashboardTitle>Tus Eventos: {user.data.username}</DashboardTitle>
+      <EventList>
+        {user.data?.data?.length > 0 ? (
+          user.data.data.map((event) => (
+            <EventItem key={event.eventId}>
+              <EventTitle>Evento:</EventTitle> {event.evento}
               <br />
-              <strong>Fecha:</strong> {event.fecha_evento}
+              <EventTitle>Fecha:</EventTitle> {event.fecha_evento}
               <br />
-              <strong>Hora:</strong> {event.hora}
+              <EventTitle>Hora:</EventTitle> {event.hora}
               <br />
-              <strong>Dirección:</strong> {event.direccion}
+              <EventTitle>Dirección:</EventTitle> {event.direccion}
               <br />
-              <strong>Descripción:</strong> {event.descripcion}
-              <br />
-              <br />
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <p>No events found.</p>
-      )}
-    </section>
-
-    <Link href="/unirseEvento">
-      <button>Unirse a Evento</button>
-    </Link>
-    <Link href="/createEvent">
-      <button>Crear Evento</button>
-    </Link>
-    <button onClick={handleLogout}>Salir</button>
-    </>
+              <EventTitle>Descripción:</EventTitle> {event.descripcion}
+            </EventItem>
+          ))
+        ) : (
+          <p>No events found.</p>
+        )}
+      </EventList>
+      <Link href="/createEvent">
+        <DashboardButton>Crear Evento</DashboardButton>
+      </Link>
+      <DashboardButton onClick={handleLogout}>Salir</DashboardButton>
+    </DashboardWrapper>
+  </>
   )
 }
 export default Dashboard
