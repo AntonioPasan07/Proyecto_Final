@@ -11,10 +11,10 @@ export const useEventoCreate = (client)=> async (params) =>{
 
 }
 
-export const getEvent = (client)=> async () =>{
+export const getEvent = (client)=> async (eventoId) =>{
     try{
       
-        const {data} = await client.get(`/evento/qvl3swe6`)
+        const {data} = await client.get(`/evento/${eventoId}`)
         console.info('dime que funciona >>>>',data)
         return  data
      }catch(error){

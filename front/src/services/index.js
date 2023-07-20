@@ -1,7 +1,7 @@
 import {register, login, logout} from './auth'
 import {Info, useEvent} from './user'
 import {useEventoCreate, getEvent} from './evento'
-import {useInvitados} from './invitados'
+import {useInvitados, useLista} from './invitados'
 import axios from 'axios'
 
 const client = axios.create({
@@ -26,7 +26,8 @@ const eventos = {
     useEventoCreate: useEventoCreate(client),
 }
 const invitados = {
-    useInvitados: useInvitados(client)
+    useInvitados: useInvitados(client),
+    useLista: useLista(client),
 }
 
 export {user, auth, eventos,invitados}
