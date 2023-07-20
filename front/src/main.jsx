@@ -13,11 +13,12 @@ import CreateEvent from './pages/createEvent'
 import UnirseEvento from './pages/unirseEvento'
 import DetallesEvento from './pages/detallesEvento'
 import ListaInvitados from './pages/listaInvitados'
+import Navbar from './components/Navbar';
 const Container = () => {
   return (
     <Provider>
       <Styled.Wrapper>
-        <h1>Hola Mundo</h1>
+        <Navbar/>
         <Switch>
           <Route path='/' component={Inicio} />
           <Route path='/login' component={Login} />
@@ -25,8 +26,8 @@ const Container = () => {
           <Route path='/dashboard' component={Dashboard} />
           <Route path='/createEvent' component={CreateEvent} />
           <Route path='/unirseEvento' component={UnirseEvento} />
-          <Route path='/detalles' component={DetallesEvento} />
-          <Route path='/lista' component={ListaInvitados} />
+          <Route path='/detalles/:id' component={DetallesEvento} />
+          <Route path='/lista/:id' component={ListaInvitados} />
           <Redirect to='/'/>
         </Switch>
       </Styled.Wrapper>

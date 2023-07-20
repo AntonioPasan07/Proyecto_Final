@@ -3,7 +3,7 @@
 
 body {
     font-family: 'Yeseva One', cursive;
-    background-color: beige;
+    background-image: linear-gradient(to right bottom, #020024, #0d1231, #191d3e, #25284c, #32335b, #3b446d, #445680, #4e6892, #5a85aa, #6ca2c0, #83bfd4, #9fdce8);
   /*  background-image: linear-gradient(rgba(0, 0, 255, 0.5), rgba(255, 255, 0, 0.5)),url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRq8agBEsgcQ2keZIqyA9lAIVLvLxO6zk0Fog&usqp=CAU");
     background-repeat: no-repeat;
     background-size: cover;*/
