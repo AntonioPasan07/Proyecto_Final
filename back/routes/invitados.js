@@ -7,6 +7,7 @@ const {authorizer}= require('../middlewares')
 module.exports = (db) => {
     router.post('/new', controllers.postInvitados(db))
     router.put('/status',authorizer(), controllers.updateGuestStatus(db))
+    router.get('/:id',controllers.getInvitados(db))
 
     return router
 
