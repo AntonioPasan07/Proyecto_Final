@@ -19,6 +19,15 @@ INNER JOIN usuarios AS u
 ON u.id = i.usuario_id
 WHERE secreto_password LIKE ${eventToken};`
 
+
+const selectUsuarios = (eventToken)=> sql.unsafe`SELECT u.username, i.pago_bizum, e.evento, e.fecha_evento
+FROM eventos AS e
+INNER JOIN invitaciones AS i
+ON e.id = i.evento_id
+INNER JOIN usuarios AS u
+ON u.id = i.usuario_id
+WHERE secreto_password LIKE ${eventToken};`
+
  /*const selectInvitaciones = (id) => sql.unsafe`select u.username
 from usuarios u
 inner join invitaciones i on u.id = i.usuario_id
@@ -29,5 +38,6 @@ Where e.secreto_password = ${id}`*/
 module.exports = {
     insertInvitaciones,
     selectInvitaciones,
+    selectUsuarios,
 }
 

@@ -1,4 +1,4 @@
-const { insertInvitaciones, selectInvitaciones } = require("./queries")
+const { insertInvitaciones, selectInvitaciones, selectUsuarios } = require("./queries")
 
 const newInvitado = (db)=> async(confirmacion, pagoBizum, estadoBizum)=> {
     try{
@@ -35,7 +35,26 @@ const updateGuests = (db)=> async(confirmacion, pagoBizum, estadoBizum, eventTok
     }
 
 }
+const getUruariosInvitados = (db)=> async(eventToken)=> {
+    try{
+         const response = await db.query(selectUsuarios(eventToken))
+         console.log('resultt',response)
+        return {
+            ok: true,
+            response: response.rows,
+           
+        }
+    }catch(error){
+        return {
+            ok: false,
+            message: error.message,
+        }
+    }
+
+}
+
 module.exports = {
     newInvitado,
     updateGuests,
+    getUruariosInvitados,
 }
