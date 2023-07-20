@@ -13,6 +13,7 @@ export const Button = styled.button`
 color: white;
   background-color: red;
   padding: 10px 20px;
+  margin-top: 15px;
   border: none;
   border-radius: 5px;
   font-size: 13px;

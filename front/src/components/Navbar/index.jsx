@@ -1,14 +1,14 @@
-import { Link } from "react-router-dom";
-
+import { Link } from "wouter";
+import {NavbarContainer} from "./styles";
 const Navbar = () => {
   return (
-    <nav>
+    <NavbarContainer>
       <Link to="/">
-        <span role="img" aria-label="home">
+        <span role="img" aria-label="home">Home:
           🏠
         </span>
       </Link>
-    </nav>
+    </NavbarContainer>
   );
 };
 
