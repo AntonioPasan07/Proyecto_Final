@@ -6,9 +6,8 @@ import Title from '../../components/Title'
 import {SectionEvent,Input,SubmitButton,ErrorMessage, Label}from './styles'
 const CreateEvent = () => {
   const URL = import.meta.env.VITE_URL_SECRET;
-  const { evento: doEvento, secreto } = createEvent()
-  const { register, formState, handleSubmit } = useForm();
-
+  const { register, formState, handleSubmit , reset } = useForm();
+  const { evento: doEvento, secreto } = createEvent(reset)
 
 
 
@@ -37,7 +36,7 @@ const CreateEvent = () => {
 
         <Label htmlFor="Descripcion" >Descripción:</Label><br />
         <Input id="descripcion" placeholder="Algo sobre el evento"{...register("descripcion", { required: true, maxLength: 100 })} />
-        <p>{formState.errors && errors[formState.errors?.descripcion?.type]}</p>
+        <ErrorMessage>{formState.errors && errors[formState.errors?.descripcion?.type]}</ErrorMessage>
 
         <Label htmlFor="fechaEvento" >Dia del evento:</Label><br />
         <Input id="fechaEvento" type='date' placeholder="Fecha"{...register("fechaEvento", { required: true })} />
