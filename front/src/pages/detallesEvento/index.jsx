@@ -9,9 +9,8 @@ import Title from '../../components/Title'
 const DetallesEvento = ({ params }) => {
   const { data, isLoading } = useEventInvitado(params.id)
   console.log('me trae el secreto>>>', data)
-  const { invitacion: doInvitados, nombresInvitados } = useInvitacion()
-  const { register, formState, handleSubmit } = useForm();
-
+  const { register, formState, handleSubmit, reset } = useForm();
+  const { invitacion: doInvitados, nombresInvitados } = useInvitacion(reset)
 
   /* const handleSubmitForm = () =>{
      handleSubmit(doInvitados)
