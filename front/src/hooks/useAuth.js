@@ -1,7 +1,7 @@
-
 import { useMutation, useQueryClient } from "react-query";
-import { useLocation } from "wouter";
-import {auth} from "../services";
+import { useLocation, useRoute } from "wouter";
+import { auth } from "../services";
+import { getCurrentUrl } from "../utils";
 
 export const useAuth = () => {
   const queryClient = useQueryClient();
@@ -10,9 +10,8 @@ export const useAuth = () => {
   const { mutate: register } = useMutation({
     mutationFn: auth.register,
     onSuccess: (result) => {
-      console.info('>mutation result:', result)
       if (result.success) {
-        setLocation('/login');
+        setLocation(getCurrentUrl("/login"));
       }
     },
   });
@@ -20,10 +19,9 @@ export const useAuth = () => {
   const { mutate: login } = useMutation({
     mutationFn: auth.login,
     onSuccess: (result) => {
-      console.log(result)
+      console.log(result);
       if (result.success) {
         queryClient.invalidateQueries({ queryKey: ["user"] });
-        setLocation('/dashboard');
       }
     },
   });
