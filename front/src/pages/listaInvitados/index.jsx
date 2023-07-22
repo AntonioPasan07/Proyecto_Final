@@ -1,13 +1,12 @@
-
-import BottonLink from '../../components/Link';
-import Navbar from '../../components/Navbar';
-import { useListaUser } from '../../hooks/useLista'
-import {List,ListItem, Section,NoInvitadosMessage} from './styles'
-import Title from '../../components/Title';
+import BottonLink from "../../components/Link";
+import Navbar from "../../components/Navbar";
+import { useListaUser } from "../../hooks/useLista";
+import { List, ListItem, Section, NoInvitadosMessage } from "./styles";
+import Title from "../../components/Title";
 const ListaInvitados = ({ params }) => {
-  console.log('listaInvitados >>>>>', params.id)
-  const { data, isLoading } = useListaUser(params.id)
-  console.log('data>>>',data)
+  console.log("listaInvitados >>>>>", params.id);
+  const { data, isLoading } = useListaUser(params.id);
+  console.log("data>>>", data);
   if (isLoading) {
     return <p>Loading...</p>;
   }
@@ -16,7 +15,7 @@ const ListaInvitados = ({ params }) => {
     <Section>
       <Navbar />
       <div>
-        <Title texto ='Lista de invitados'/>
+        <Title texto="Lista de invitados" />
         {data?.length > 0 ? (
           <List>
             {data?.map((invitado) => (
@@ -27,11 +26,9 @@ const ListaInvitados = ({ params }) => {
           <NoInvitadosMessage>No hay invitados.</NoInvitadosMessage>
         )}
       </div>
-      <BottonLink to="/" texto="Si quieres crear eventos, regístrate" />
+      <BottonLink to={`/detalles/${params.id}`} texto={"Volver a detalles"} />
     </Section>
   );
 };
 
 export default ListaInvitados;
-
-

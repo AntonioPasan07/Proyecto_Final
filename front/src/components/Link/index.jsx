@@ -1,15 +1,13 @@
-import {StyledBotonLink, Button, Div} from './styles'
+import { StyledBotonLink, Button, Div } from "./styles";
 
 const BotonLink = ({ to, texto }) => {
-    return (<>
-      <Div>
+  return (
+    <Div>
       <StyledBotonLink to={to}>
         <Button>{texto}</Button>
       </StyledBotonLink>
-      </Div>
-      
-      </>
-    );
-  };
-  
-  export default BotonLink;
+    </Div>
+  );
+};
+
+export default BotonLink;
