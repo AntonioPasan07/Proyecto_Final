@@ -3,7 +3,7 @@ import { useMutation, useQueryClient } from "react-query"
 import {invitados}from '../services'
 import {useState} from 'react'
 
-export const useInvitacion = () => {
+export const useInvitacion = (reset) => {
     const queryClient = useQueryClient();
     const [nombresInvitados, setNombresInvitados] = useState([]);
     console.log('useInvitacion state empty',nombresInvitados)
@@ -19,7 +19,7 @@ export const useInvitacion = () => {
             setNombresInvitados(nombres);
             queryClient.invalidateQueries({ queryKey: ["user"] });
           // setLocation('/lista');
-           
+           reset()
         
         
           }

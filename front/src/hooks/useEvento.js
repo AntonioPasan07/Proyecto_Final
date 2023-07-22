@@ -3,7 +3,7 @@ import { useLocation } from "wouter"
 import {eventos}from '../services'
 import {useState}from 'react'
 
-export const createEvent = () => {
+export const createEvent = (reset) => {
     const queryClient = useQueryClient();
     const [, setLocation] = useLocation();
     const [secreto, setsecreto]= useState('')
@@ -17,6 +17,7 @@ export const createEvent = () => {
             setsecreto(secretoPassword)
             queryClient.invalidateQueries({ queryKey: ["user"] });
             setLocation('/createEvent');
+            reset()
           }
         },
       });
