@@ -16,7 +16,7 @@ export const useLista = (client)=> async (eventoId) =>{
    try{
       const {data} = await client.get(`/invitados/${eventoId}`)
        console.info('invitados >>>>',data)
-       return data.username
+       return data.data.username
     }catch(error){
        return {success: false}
     }
