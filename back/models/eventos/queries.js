@@ -1,31 +1,40 @@
-const {sql} = require('slonik')
+const { sql } = require("slonik");
 
-
-const insertEvento = (evento, fechaEvento, hora, telefono, direccion, descripcion,codigoSecreto, email) => sql.unsafe`
-  INSERT INTO eventos (evento, fecha_evento, hora, telefono, direccion, descripcion,secreto_password, id_usuario)
-  SELECT ${evento}, ${fechaEvento}, ${hora}, ${telefono}, ${direccion}, ${descripcion},${codigoSecreto},id
-  FROM usuarios
-  WHERE email LIKE ${email}
+const insertEvento = (
+  evento,
+  fechaEvento,
+  hora,
+  telefono,
+  direccion,
+  descripcion,
+  codigoSecreto,
+  email
+) => sql.unsafe`
+    INSERT INTO eventos (evento, fecha_evento, hora, telefono, direccion, descripcion,secreto_password, id_usuario)
+    SELECT ${evento}, ${fechaEvento}, ${hora}, ${telefono}, ${direccion}, ${descripcion},${codigoSecreto},id
+    FROM usuarios
+    WHERE email LIKE ${email}
 `;
 const getEventoCreate = (email) => sql.unsafe`
-SELECT evento , fecha_evento, hora, telefono, direccion, descripcion,secreto_password
- FROM eventos 
- WHERE id_usuario = (SELECT id FROM usuarios WHERE email LIKE ${email})
-`
+    SELECT evento , fecha_evento, hora, telefono, direccion, descripcion,secreto_password
+    FROM eventos 
+    WHERE id_usuario = (SELECT id FROM usuarios WHERE email LIKE ${email})
+`;
 
+/**
+ * Prueba a cambiar por la consulta nueva
+ */
 const getEventos = (id) => sql.unsafe`
-SELECT evento, fecha_evento, hora, telefono, direccion, descripcion
-FROM Eventos
-WHERE secreto_password = ${id}
-`
-
+    SELECT evento, fecha_evento, hora, telefono, direccion, descripcion
+    FROM eventos
+    WHERE secreto_password = ${id}
+`;
 
 module.exports = {
-    insertEvento,
-    getEventoCreate,
-    getEventos,
-    
-}
+  insertEvento,
+  getEventoCreate,
+  getEventos,
+};
 
 /*CREATE TABLE IF NOT EXISTS Usuarios (
     ID uuid PRIMARY KEY DEFAULT uuid_generate_v4(),

@@ -1,14 +1,17 @@
-const {sql} = require('slonik')
+const { sql } = require("slonik");
 
 const usersEvent = (user) => sql.unsafe`
-SELECT u.username, e.evento, e.fecha_evento, e.hora, e.direccion, e.descripcion
-FROM Usuarios u
-JOIN Eventos e ON u.ID = e.ID_usuario
-WHERE u.username = ${user.username}`
+    SELECT
+        u.username, e.evento, e.secreto_password,
+        e.fecha_evento, e.hora, e.direccion, e.descripcion
+    FROM usuarios u
+    JOIN eventos e ON u.ID = e.ID_usuario
+    WHERE u.username = ${user.username}
+`;
 
-module.exports ={
-    usersEvent,
-}
+module.exports = {
+  usersEvent,
+};
 
 /*CREATE TABLE IF NOT EXISTS Usuarios (
     ID uuid PRIMARY KEY DEFAULT uuid_generate_v4(),
