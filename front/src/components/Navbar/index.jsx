@@ -3,7 +3,7 @@ import {NavbarContainer} from "./styles";
 const Navbar = () => {
   return (
     <NavbarContainer>
-      <Link to="/">
+      <Link to="/dashboard">
         <span role="img" aria-label="home">Home:
           🏠
         </span>
