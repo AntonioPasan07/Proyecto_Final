@@ -28,7 +28,7 @@ const Dashboard = () => {
 
   const handleLogout = () => {
     logout();
-    
+    setLocation('/')
   };
 
   const handleClick = (event) => {
