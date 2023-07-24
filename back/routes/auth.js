@@ -9,6 +9,6 @@ const signinValidator = fieldsValidator('email', 'password')
 module.exports = (db) => {
     router.post('/register', signupValidator,authControllers.signup(db))
     router.post('/login', signinValidator,authControllers.signin(db))
-    router.post('/signout',authorizer, authControllers.signout())
+    router.post('/signout',authorizer(), authControllers.signout())
     return router
 }
