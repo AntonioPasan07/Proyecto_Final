@@ -2,6 +2,7 @@ import { useLogin } from "../../hooks/useLogin";
 import { useUserEvent } from "../../hooks/useUserEvent";
 import { Link, useLocation } from "wouter";
 import { useAuth } from "../../hooks/useAuth";
+import { useState } from "react";
 import {
   DashboardWrapper,
   EventList,
@@ -9,12 +10,15 @@ import {
   EventTitle,
   DashboardButton,
   DashboardTitle,
+  StyledParagraph
 } from "./styles";
+
 
 const Dashboard = () => {
   const { data: user, isLoading } = useUserEvent();
   const { logout } = useAuth(); //preguntar por que no me esta funcionamdo
   const [, setLocation] = useLocation();
+  const [clicked, setClicked] = useState(false);
   console.log("data que trae>", user);
   useLogin();
 
@@ -22,8 +26,9 @@ const Dashboard = () => {
     return <p>Loading...</p>;
   }
 
-  const handleLogout = () => {
-    logout();
+  const handleLogout = (user) => {
+    logout(user);
+    console.log('logout>>>>', user)
   };
 
   const handleClick = (event) => {
@@ -32,8 +37,9 @@ const Dashboard = () => {
 
   const handleCopy = (url) => {
     navigator.clipboard.writeText(url);
+    setClicked(true);
   };
-
+ 
   return (
     <>
       <DashboardWrapper>
@@ -61,9 +67,9 @@ const Dashboard = () => {
                     <EventTitle>Descripción:</EventTitle> {event.descripcion}
                   </EventItem>
 
-                  <p onClick={() => handleCopy(urlToCopy)}>
+                  <StyledParagraph clicked={clicked} onClick={() => handleCopy(urlToCopy)}>
                     Haz click para copiar el enlace: {urlToCopy}
-                  </p>
+                  </StyledParagraph>
                 </section>
               );
             })

@@ -19,6 +19,18 @@ background-color: aliceblue;
     margin-bottom: 10px;
     border: 2px solid red;
     padding: 10px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+   
+`;
+export const StyledParagraph = styled.p`
+  color: ${(props) => (props.clicked ? "yellow" : "white")};
+  cursor: pointer;
+  transition: color 2s;
 `;
 
 export const EventTitle = styled.strong`
