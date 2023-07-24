@@ -24,11 +24,23 @@ const getEventoCreate = (email) => sql.unsafe`
 /**
  * Prueba a cambiar por la consulta nueva
  */
-const getEventos = (id) => sql.unsafe`
-    SELECT evento, fecha_evento, hora, telefono, direccion, descripcion
+const getEventos = (id) => sql.unsafe`SELECT evento, fecha_evento, hora, telefono, direccion, descripcion
+FROM eventos
+WHERE secreto_password = ${id}
+
+`
+/* SELECT evento, fecha_evento, hora, telefono, direccion, descripcion
     FROM eventos
-    WHERE secreto_password = ${id}
-`;
+    WHERE secreto_password = ${id} */
+/*SELECT DISTINCT evento, fecha_evento, hora, telefono, direccion, descripcion
+FROM eventos AS e
+INNER JOIN invitaciones AS i
+ON i.evento_id = e.id
+INNER JOIN usuarios AS u
+ON i.usuario_id = u.id
+WHERE e.secreto_password LIKE ${id} AND
+i.usuario_id != (SELECT id FROM usuarios WHERE email LIKE ${email}); 
+`; */
 
 module.exports = {
   insertEvento,
