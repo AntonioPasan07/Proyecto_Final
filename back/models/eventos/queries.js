@@ -42,6 +42,10 @@ WHERE e.secreto_password LIKE ${id} AND
 i.usuario_id != (SELECT id FROM usuarios WHERE email LIKE ${email}); 
 `; */
 
+/*SELECT evento, fecha_evento, hora, telefono, direccion, descripcion
+FROM eventos
+WHERE secreto_password = ${id} */
+
 module.exports = {
   insertEvento,
   getEventoCreate,
