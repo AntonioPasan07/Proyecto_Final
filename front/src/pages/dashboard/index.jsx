@@ -16,9 +16,9 @@ import {
 
 const Dashboard = () => {
   const { data: user, isLoading } = useUserEvent();
-  const { logout } = useAuth(); //preguntar por que no me esta funcionamdo
+  const { logout} = useAuth();//preguntar por que no me esta funcionamdo
   const [, setLocation] = useLocation();
-  const [clicked, setClicked] = useState(false);
+  const [clicked, setClicked] = useState('');
   console.log("data que trae>", user);
   useLogin();
 
@@ -26,9 +26,9 @@ const Dashboard = () => {
     return <p>Loading...</p>;
   }
 
-  const handleLogout = (user) => {
-    logout(user);
-    console.log('logout>>>>', user)
+  const handleLogout = () => {
+    logout();
+    
   };
 
   const handleClick = (event) => {
@@ -37,7 +37,7 @@ const Dashboard = () => {
 
   const handleCopy = (url) => {
     navigator.clipboard.writeText(url);
-    setClicked(true);
+    setClicked(url);
   };
  
   return (
@@ -67,7 +67,7 @@ const Dashboard = () => {
                     <EventTitle>Descripción:</EventTitle> {event.descripcion}
                   </EventItem>
 
-                  <StyledParagraph clicked={clicked} onClick={() => handleCopy(urlToCopy)}>
+                  <StyledParagraph clicked={urlToCopy === clicked} onClick={() => handleCopy(urlToCopy)}>
                     Haz click para copiar el enlace: {urlToCopy}
                   </StyledParagraph>
                 </section>
@@ -80,7 +80,7 @@ const Dashboard = () => {
         <Link href="/createEvent">
           <DashboardButton>Crear Evento</DashboardButton>
         </Link>
-        <DashboardButton onClick={handleLogout}>Salir</DashboardButton>
+        <DashboardButton onClick={() => handleLogout()}>Salir</DashboardButton>
       </DashboardWrapper>
     </>
   );
