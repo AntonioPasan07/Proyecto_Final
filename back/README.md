@@ -61,7 +61,7 @@ invitacion_evento (clave externa que hace referencia al evento en la tabla de Ev
 usuario_invitado (clave externa que hace referencia al usuario invitado en la tabla de Usuarios)
 
 
-## rutas 
+## rutas endpoin
 Crea una ruta POST en localhost:4000/evento donde el usuario pueda enviar los datos del evento en el siguiente formato:
 
 ```
@@ -92,3 +92,39 @@ El campo secreto_password contiene el token generado para identificar el evento.
 Para obtener el evento de un usuario que nos invitó, se debe hacer una solicitud GET a la ruta localhost:4000/evento/:id, donde :id corresponde al token asignado al evento. Por ejemplo, si el token es "wne98f6d", la solicitud sería localhost:4000/evento/wne98f6d.
 
 Esta solicitud devolverá el evento asociado al token proporcionado, permitiendo acceder a los detalles del evento como el nombre, la fecha, la hora, el teléfono, la dirección y la descripción.
+```
+{
+ "success": true,
+    "data": {
+        "evento": {
+            "evento": "Fiesta en Thebridge",
+            "fecha_evento": "2023-07-28",
+            "hora": "20:24:00",
+            "telefono": "1234567888888",
+            "direccion": "Madrid",
+            "descripcion": "con ganas "
+        }
+    }
+}
+```
+Para poder asistir a un evento los invitados tendrán que meter unos campos como pago bizum y estado bizum el endpoin seria el siguiente.
+metodo PUT localhost:4000/invitados/status 
+
+```
+{
+"pagoBizum": 123,
+"estadoBizum":"pendiente"
+} 
+```
+en el front nosotros le pondremos el secreto_password para que el usuario no tenga que preocuparse a ponerlo .
+
+necesitaremos otro endpoin para obtener el username del usuario que a confirmado su asistencia seria asi.
+metodo : GET localhost:4000/invitados/{token}sera una ruta por el id para que nos muestre el nombre del usuario.
+```
+{
+    "success": true,
+    "data": {
+        "username": "******"
+    }
+}
+```
