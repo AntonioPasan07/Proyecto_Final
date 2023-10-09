@@ -13,7 +13,7 @@ app.use(cookiParser())
 const routes = require('./routes');
 app.use(routes(db));
 
-const PORT = process.env.PORT ?? 4000
+const PORT = process.env.PORT ?? 8080 // cambiado
 app.use((req, res, next) => {
   next(errors[404]);
 });
