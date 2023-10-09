@@ -13,7 +13,7 @@ app.use(cookiParser())
 const routes = require('./routes');
 app.use(routes(db));
 
-
+const PORT = process.env.PORT ?? 4000
 app.use((req, res, next) => {
   next(errors[404]);
 });
@@ -24,6 +24,6 @@ app.use((req, res, next) => {
       message: error.message,
     });
   });
-app.listen(process.env.PORT,()=> {
-    console.log(`Ejemplo app listening on port${process.env.PORT}`)
+app.listen(PORT,()=> {
+    console.log(`Ejemplo app listening on port${PORT}`)
 });
